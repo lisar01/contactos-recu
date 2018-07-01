@@ -93,7 +93,7 @@ public class ContactosMainWindow extends SimpleWindow<ContactosAppModel> {
         it.setTitle("Nuevo Contacto");
       };
       final GroupPanel groupPanel = ObjectExtensions.<GroupPanel>operator_doubleArrow(_groupPanel, _function);
-      _xblockexpression = new ContactoPanel(groupPanel, "dfsdf");
+      _xblockexpression = new ContactoPanel(groupPanel, "contactoNuevo.");
     }
     return _xblockexpression;
   }

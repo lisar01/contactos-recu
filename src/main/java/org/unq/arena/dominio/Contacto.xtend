@@ -7,8 +7,7 @@ import org.uqbar.commons.model.annotations.TransactionalAndObservable
 @Accessors
 @TransactionalAndObservable
 class Contacto {
-	String nombre
-	String apellido
+	String nombreYApellido
 	String email
 	int telefono
 	Boolean esFavorito;
@@ -19,32 +18,27 @@ class Contacto {
 	}
 	
 	def validarSiEsVacio(String campo, String aValidar) {
-		if (aValidar == null || aValidar.trim().equals("")) {
-			throw new UserException("Debe ingresar un " + campo);
+		if (aValidar === null || aValidar.trim().equals("")) {
+			throw new UserException("Debe ingresar un " + campo)
 		}
 	}
 	
-	def setNombre(String nombre) {
-		validarSiEsVacio("nombre", nombre);
-		this.nombre = nombre;
-	}
-	
-	def setApellido(String apellido) {
-		validarSiEsVacio("apellido", apellido);
-		this.apellido = apellido;
+	def setNombreYApellido(String nombreYApellido) {
+		validarSiEsVacio("nombre y apellido", nombreYApellido)
+		if (nombreYApellido.split("").size == 1) {
+			throw new UserException("Debe ingresar un nombre y apellido")
+		}
+		
+		this.nombreYApellido = nombreYApellido
 	}
 	
 	def setEmail(String email) {
-		validarSiEsVacio("email", email);
-		this.email = email;
+		validarSiEsVacio("email", email)
+		this.email = email
 	}
 	
 	def marcarDesmarcarFavorito() {
-		esFavorito = ! esFavorito;
-	}
-	
-	def nombreYApellido() {
-		nombre + " " + apellido;
+		esFavorito = ! esFavorito
 	}
 	
 }

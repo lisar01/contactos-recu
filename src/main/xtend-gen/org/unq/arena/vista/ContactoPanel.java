@@ -7,6 +7,7 @@ import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.widgets.Container;
 import org.uqbar.arena.widgets.Control;
 import org.uqbar.arena.widgets.Label;
+import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.xtend.ArenaXtendExtensions;
@@ -25,17 +26,38 @@ public class ContactoPanel extends Panel {
   public TextBox agregarInputs() {
     TextBox _xblockexpression = null;
     {
+      this.agregarInput("Nombre y Apellido", "nombreYApellido", Boolean.valueOf(false));
+      this.agregarInput("Email", "email", Boolean.valueOf(false));
+      _xblockexpression = this.agregarInput("Telfono", "telefono", Boolean.valueOf(true));
+    }
+    return _xblockexpression;
+  }
+  
+  public TextBox agregarInput(final String label, final String campo, final Boolean numeric) {
+    TextBox _xblockexpression = null;
+    {
       final Panel hpanel = new Panel(this);
       HorizontalLayout _horizontalLayout = new HorizontalLayout();
       hpanel.setLayout(_horizontalLayout);
       Label _label = new Label(hpanel);
-      _label.setText("Nombre");
-      TextBox _textBox = new TextBox(hpanel);
-      final Procedure1<TextBox> _function = (TextBox it) -> {
-        ObservableValue<Control, ControlBuilder> _value = it.<ControlBuilder>value();
-        ArenaXtendExtensions.operator_spaceship(_value, "contactoNuevo.nombre");
+      final Procedure1<Label> _function = (Label it) -> {
+        it.setText((label + ":"));
+        it.alignRight();
+        it.setWidth(140);
       };
-      _xblockexpression = ObjectExtensions.<TextBox>operator_doubleArrow(_textBox, _function);
+      ObjectExtensions.<Label>operator_doubleArrow(_label, _function);
+      TextBox _xifexpression = null;
+      if ((numeric).booleanValue()) {
+        _xifexpression = new NumericField(hpanel);
+      } else {
+        _xifexpression = new TextBox(hpanel);
+      }
+      final TextBox field = _xifexpression;
+      final Procedure1<TextBox> _function_1 = (TextBox it) -> {
+        ObservableValue<Control, ControlBuilder> _value = it.<ControlBuilder>value();
+        ArenaXtendExtensions.operator_spaceship(_value, (this.scope + campo));
+      };
+      _xblockexpression = ObjectExtensions.<TextBox>operator_doubleArrow(field, _function_1);
     }
     return _xblockexpression;
   }

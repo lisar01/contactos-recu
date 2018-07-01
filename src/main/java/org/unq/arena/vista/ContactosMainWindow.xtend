@@ -12,9 +12,6 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.GroupPanel
-import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.TextBox
-import org.uqbar.arena.layout.HorizontalLayout
 
 class ContactosMainWindow  extends SimpleWindow<ContactosAppModel> {
 	
@@ -71,18 +68,7 @@ class ContactosMainWindow  extends SimpleWindow<ContactosAppModel> {
 		val groupPanel = new GroupPanel(panel) => [
 			title = "Nuevo Contacto"
 		]
-		
-		new ContactoPanel(groupPanel, "dfsdf")
-		
-//		val hpanel = new Panel(groupPanel)
-//		hpanel.layout = new HorizontalLayout;
-//		
-//		new Label(hpanel).text = "Nombre"
-//
-//		new TextBox(hpanel) => [
-//			value <=> "contactoNuevo.nombre"
-//		]
-		
+		new ContactoPanel(groupPanel, "contactoNuevo.")
 	}
 	
 	

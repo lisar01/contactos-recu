@@ -20,32 +20,28 @@ public class Contactos {
   public List<Contacto> crearContactos() {
     Contacto _contacto = new Contacto();
     final Procedure1<Contacto> _function = (Contacto it) -> {
-      it.setNombre("Walter");
-      it.setApellido("White");
+      it.setNombreYApellido("Walter White");
       it.setTelefono(121432432);
       it.setEmail("ww@gmail.com");
     };
     Contacto _doubleArrow = ObjectExtensions.<Contacto>operator_doubleArrow(_contacto, _function);
     Contacto _contacto_1 = new Contacto();
     final Procedure1<Contacto> _function_1 = (Contacto it) -> {
-      it.setNombre("Rick");
-      it.setApellido("Grimes");
+      it.setNombreYApellido("Rick Grimes");
       it.setTelefono(546768572);
       it.setEmail("rg@gmail.com");
     };
     Contacto _doubleArrow_1 = ObjectExtensions.<Contacto>operator_doubleArrow(_contacto_1, _function_1);
     Contacto _contacto_2 = new Contacto();
     final Procedure1<Contacto> _function_2 = (Contacto it) -> {
-      it.setNombre("Barry Allen");
-      it.setApellido("White");
+      it.setNombreYApellido("Barry Allen");
       it.setTelefono(3465465);
       it.setEmail("ba@gmail.com");
     };
     Contacto _doubleArrow_2 = ObjectExtensions.<Contacto>operator_doubleArrow(_contacto_2, _function_2);
     Contacto _contacto_3 = new Contacto();
     final Procedure1<Contacto> _function_3 = (Contacto it) -> {
-      it.setNombre("Tim");
-      it.setApellido("Drake");
+      it.setNombreYApellido("Tim Drake");
       it.setTelefono(89785663);
       it.setEmail("td@gmail.com");
     };

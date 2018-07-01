@@ -1,7 +1,8 @@
 package org.unq.arena.dominio;
 
-import com.google.common.base.Objects;
+import java.util.List;
 import org.eclipse.xtend.lib.annotations.Accessors;
+import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Pure;
 import org.uqbar.commons.model.annotations.TransactionalAndObservable;
 import org.uqbar.commons.model.exceptions.UserException;
@@ -10,9 +11,7 @@ import org.uqbar.commons.model.exceptions.UserException;
 @TransactionalAndObservable
 @SuppressWarnings("all")
 public class Contacto {
-  private String nombre;
-  
-  private String apellido;
+  private String nombreYApellido;
   
   private String email;
   
@@ -25,25 +24,21 @@ public class Contacto {
   }
   
   public void validarSiEsVacio(final String campo, final String aValidar) {
-    if ((Objects.equal(aValidar, null) || aValidar.trim().equals(""))) {
+    if (((aValidar == null) || aValidar.trim().equals(""))) {
       throw new UserException(("Debe ingresar un " + campo));
     }
   }
   
-  public String setNombre(final String nombre) {
+  public String setNombreYApellido(final String nombreYApellido) {
     String _xblockexpression = null;
     {
-      this.validarSiEsVacio("nombre", nombre);
-      _xblockexpression = this.nombre = nombre;
-    }
-    return _xblockexpression;
-  }
-  
-  public String setApellido(final String apellido) {
-    String _xblockexpression = null;
-    {
-      this.validarSiEsVacio("apellido", apellido);
-      _xblockexpression = this.apellido = apellido;
+      this.validarSiEsVacio("nombre y apellido", nombreYApellido);
+      int _size = ((List<String>)Conversions.doWrapArray(nombreYApellido.split(""))).size();
+      boolean _equals = (_size == 1);
+      if (_equals) {
+        throw new UserException("Debe ingresar un nombre y apellido");
+      }
+      _xblockexpression = this.nombreYApellido = nombreYApellido;
     }
     return _xblockexpression;
   }
@@ -61,18 +56,9 @@ public class Contacto {
     return this.esFavorito = Boolean.valueOf((!(this.esFavorito).booleanValue()));
   }
   
-  public String nombreYApellido() {
-    return ((this.nombre + " ") + this.apellido);
-  }
-  
   @Pure
-  public String getNombre() {
-    return this.nombre;
-  }
-  
-  @Pure
-  public String getApellido() {
-    return this.apellido;
+  public String getNombreYApellido() {
+    return this.nombreYApellido;
   }
   
   @Pure
