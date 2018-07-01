@@ -39,6 +39,7 @@ class Contactos {
 	
 	def agregarContacto(Contacto contacto) {
 		contactos.add(contacto)
+		println("Se agrego el contacto exitosamente :)")
 	}
 	
 	

@@ -8,20 +8,36 @@ import org.uqbar.arena.widgets.Label
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.NumericField
+import org.uqbar.lacar.ui.model.Action
+import org.uqbar.arena.widgets.Button
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Accessors
 class ContactoPanel extends Panel {
 	String scope;
+	Action buttonAction
+	String buttonCaption
 	
-	new(Container container,String scope) {
+	new(Container container, String scope, String buttonCaption, Action buttonAction) {
 		super(container)
 		this.scope = scope
-		agregarInputs 
+		this.buttonCaption = buttonCaption
+		this.buttonAction = buttonAction
+		crearPanel 
 	}
 	
-	def agregarInputs() {
+	def crearPanel() {
 		agregarInput("Nombre y Apellido", "nombreYApellido", false);
 		agregarInput("Email" , "email", false);
-		agregarInput("Telfono", "telefono", true);
+		agregarInput("Teléfono", "telefono", true);
+		
+		new Button(this) => [
+			caption = buttonCaption
+			onClick(buttonAction)
+			setAsDefault
+			disableOnError	
+		]
+		
 	}
 	
 	

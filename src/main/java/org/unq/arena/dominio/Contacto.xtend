@@ -17,27 +17,27 @@ class Contacto {
 		esFavorito = false;
 	}
 	
-	def validarSiEsVacio(String campo, String aValidar) {
+	def void validarSiEsVacio(String campo, String aValidar) {
 		if (aValidar === null || aValidar.trim().equals("")) {
 			throw new UserException("Debe ingresar un " + campo)
 		}
 	}
 	
-	def setNombreYApellido(String nombreYApellido) {
+	def void setNombreYApellido(String nombreYApellido) {
 		validarSiEsVacio("nombre y apellido", nombreYApellido)
-		if (nombreYApellido.split("").size == 1) {
+		if (nombreYApellido.split(" ").size == 1) {
 			throw new UserException("Debe ingresar un nombre y apellido")
 		}
 		
 		this.nombreYApellido = nombreYApellido
 	}
 	
-	def setEmail(String email) {
+	def void setEmail(String email) {
 		validarSiEsVacio("email", email)
 		this.email = email
 	}
 	
-	def marcarDesmarcarFavorito() {
+	def Boolean marcarDesmarcarFavorito() {
 		esFavorito = ! esFavorito
 	}
 	

@@ -68,7 +68,10 @@ class ContactosMainWindow  extends SimpleWindow<ContactosAppModel> {
 		val groupPanel = new GroupPanel(panel) => [
 			title = "Nuevo Contacto"
 		]
-		new ContactoPanel(groupPanel, "contactoNuevo.")
+		
+		new ContactoPanel(groupPanel,"contactoNuevo.",
+			"Agregar",[this.modelObject.agregarContacto])
+		
 	}
 	
 	
