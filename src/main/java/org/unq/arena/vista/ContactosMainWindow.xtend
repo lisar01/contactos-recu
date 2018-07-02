@@ -12,6 +12,7 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.GroupPanel
+import org.uqbar.arena.layout.HorizontalLayout
 
 class ContactosMainWindow  extends SimpleWindow<ContactosAppModel> {
 	
@@ -22,20 +23,37 @@ class ContactosMainWindow  extends SimpleWindow<ContactosAppModel> {
 	
 	
 	override protected addActions(Panel actionsPanel) {
+		val hpanel = new Panel(actionsPanel)
+		hpanel.layout = new HorizontalLayout
+		
 		// Deshabilitar los botones si no hay ningún elemento seleccionado en la grilla.
 		val elementSelected = new NotNullObservable("contactoSeleccionado")
 		
-		new Button(actionsPanel) => [
+		new Button(hpanel) => [
 			caption = "Favorito"
 			onClick [modelObject.marcarDesmarcarFavorito]
 			bindEnabled(elementSelected)
 		]
 		
+		new Button(hpanel) => [
+			caption = "Editar"
+			onClick([|this.modificarContacto])
+			bindEnabled(elementSelected)
+		]
+		
+	}
+	
+	def void modificarContacto() {
+		new EditarContactoWindow(this, modelObject.contactoSeleccionado) => [
+			onAccept[this.modelObject.editarContacto]
+			open
+		]
 	}
 	
 	override protected createFormPanel(Panel mainPanel) {
 		val panelColumn = new Panel(mainPanel) => [
-			layout = new ColumnLayout(2);
+			layout = new ColumnLayout(2)
+		    width = 800
 		]
 		
 		crearPanelDeTablaDeContactos(panelColumn)
@@ -49,16 +67,20 @@ class ContactosMainWindow  extends SimpleWindow<ContactosAppModel> {
 		val table = new Table(panel, Contacto) => [
 			items <=> "contactos"
 			value <=> "contactoSeleccionado"
+			numberVisibleRows = 8
 		]
+		
 		new Column(table) => [
 			title = "Nombre y Apellido"
 			alignRight
+			fixedSize = 250
 			bindContentsToProperty("nombreYApellido")
 		]
 
 		new Column(table) => [
 			title = "Favorito"
-			bindContentsToProperty("esFavorito")
+			fixedSize = 50
+			bindContentsToProperty("esFavorito").transformer =[ Boolean recibe |if (recibe) "SI" else "NO"]
 		]
 		
 	}

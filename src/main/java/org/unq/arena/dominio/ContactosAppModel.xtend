@@ -23,9 +23,14 @@ class ContactosAppModel {
 	} 
 	
 	def agregarContacto() {
-		contactosRepo.agregarContacto(contactoNuevo);
+		contactosRepo.agregar(contactoNuevo);
 		contactoNuevo = new Contacto;
 		refresh
+	}
+	
+		
+	def editarContacto() {
+		contactoSeleccionado.validar()
 	}
 	
 	

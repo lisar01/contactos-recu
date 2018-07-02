@@ -31,9 +31,12 @@ class ContactoPanel extends Panel {
 		agregarInput("Email" , "email", false);
 		agregarInput("Teléfono", "telefono", true);
 		
-		new Button(this) => [
+		val panel = new Panel(this)
+		
+		new Button(panel) => [
 			caption = buttonCaption
 			onClick(buttonAction)
+			width = 100
 			setAsDefault
 			disableOnError	
 		]
@@ -55,6 +58,7 @@ class ContactoPanel extends Panel {
 
 		field => [
 			value <=> scope + campo
+			width = 200
 		]
 		
 	}
