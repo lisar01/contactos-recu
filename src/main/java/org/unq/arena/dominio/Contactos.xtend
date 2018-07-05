@@ -39,6 +39,7 @@ class Contactos {
 	
 	
 	def agregar(Contacto contacto) {
+		contacto.validar()
 		validarEsDuplicado(contacto)
 		contactos.add(contacto)
 	}

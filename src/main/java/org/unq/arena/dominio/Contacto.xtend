@@ -12,7 +12,7 @@ class Contacto {
 	String email
 	int telefono
 	Boolean esFavorito;
-	
+	static final int MIN_NUMERO_TELEFONO = 10000000
 	
 	new() {
 		esFavorito = false;
@@ -26,6 +26,9 @@ class Contacto {
 	def validar() {
 		validarSiEsVacio("nombre y apellido", nombreYApellido)
 		validarSiEsVacio("email", email)
+		if (telefono <= MIN_NUMERO_TELEFONO) {
+			throw new UserException("El número de telefono debe contener por lo menos 8 digitos")
+		}
 	}
 	
 	
@@ -40,7 +43,6 @@ class Contacto {
 		validarEsEmail(email)
 		this.email = email
 	}
-	
 	
 	def void validarSiEsVacio(String campo, String aValidar) {
 		if (aValidar === null || aValidar.trim().equals("")) {
